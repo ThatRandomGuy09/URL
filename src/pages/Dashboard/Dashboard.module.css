@@ -1,0 +1,93 @@
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  column-gap: 30px;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.totalClicks {
+  font-size: 40px;
+  font-weight: bold;
+  color: #0056d2;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.clicksList,
+.deviceList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.clickItem,
+.deviceItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.clickDate,
+.deviceIcon {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 80px;
+}
+
+.clickBar,
+.deviceBar {
+  flex-grow: 1;
+  height: 20px;
+  background-color: #e6e6e6;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.clickBarFill,
+.deviceBarFill {
+  height: 100%;
+  background-color: #0056d2;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.clickCount,
+.deviceCount {
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 40px;
+  text-align: right;
+}
