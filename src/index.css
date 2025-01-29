@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #1e40af;
+  --background-color: #f8fafc;
+  --text-color: #1e293b;
+  --error-color: #ef4444;
+  --success-color: #22c55e;
+  --border-color: #e2e8f0;
+}
+
+body {
+  font-family: "Manrope", serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+}
