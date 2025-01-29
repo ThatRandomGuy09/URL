@@ -13,7 +13,7 @@ const Settings = () => {
   const [loading, setLoading] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const BASE_URL = "http://localhost:5000";
+  const BASE_URL = "https://url-backend-fczi.onrender.com";
 
   useEffect(() => {
     fetchUserDetails();

@@ -19,7 +19,7 @@ const DashboardLayout = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  const BASE_URL = "http://localhost:5000";
+  const BASE_URL = "https://url-backend-fczi.onrender.com";
 
   const navigation = [
     { name: "Dashboard", path: "/", icon: LayoutDashboard },
@@ -71,20 +71,19 @@ const DashboardLayout = () => {
           ? formData.expirationDate
           : null,
       };
-  
+
       console.log("Payload sent to backend:", payload);
-  
+
       const response = await axios.post(`${BASE_URL}/api/links`, payload, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-  
+
       console.log("Link created successfully:", response.data);
       setModalOpen(false);
     } catch (error) {
       console.error("Error creating link:", error.message);
     }
   };
-  
 
   return (
     <div className={styles.container}>

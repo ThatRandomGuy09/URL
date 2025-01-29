@@ -14,7 +14,7 @@ const Links = () => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [currentLink, setCurrentLink] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc"); // Sorting state
-  const BASE_URL = "http://localhost:5000/api/links";
+  const BASE_URL = "https://url-backend-fczi.onrender.com/api/links";
 
   useEffect(() => {
     fetchLinks();
@@ -63,13 +63,9 @@ const Links = () => {
           : null,
       };
 
-      await axios.put(
-        `${BASE_URL}/short/${currentLink.shortUrl}`,
-        payload,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
+      await axios.put(`${BASE_URL}/short/${currentLink.shortUrl}`, payload, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
 
       fetchLinks();
       setModalOpen(false);
