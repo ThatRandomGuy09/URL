@@ -1,0 +1,33 @@
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background-color: white;
+    border: 1px solid #0056ff;
+    border-radius: 12px;
+    padding: 12px 26px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-weight: 800;
+  }
+  
+  .toast.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .icon {
+    color: #0056ff;
+    width: 20px;
+    height: 20px;
+  }
+  

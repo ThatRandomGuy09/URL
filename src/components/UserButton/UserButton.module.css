@@ -1,0 +1,56 @@
+.userContainer {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .avatarContainer {
+    cursor: pointer;
+  }
+  
+  .avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffc107;
+    color: #6c757d;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin-top: 8px;
+    z-index: 10;
+  }
+  
+  .logoutBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logoutBtn:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .logoutBtn svg {
+    color: #dc3545;
+  }
+  
