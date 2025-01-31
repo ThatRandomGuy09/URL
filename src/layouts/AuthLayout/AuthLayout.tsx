@@ -1,20 +1,19 @@
 import { Outlet, Link } from "react-router-dom";
-import styles from "../DashboardLayout/AuthLayout.module.css";
 import React from "react";
+import styles from "../DashboardLayout/AuthLayout.module.css";
 
 const AuthLayout = () => {
   return (
     <div className={styles.container}>
-     
       <div className={styles.left}>
         <img
-          src="image.png"
+          src="src/assests/image.png"
           alt="Space background"
           className={styles.backgroundImage}
         />
         <div className={styles.overlay}></div>
         <div className={styles.logo}>
-          <img src="logo.png" alt="Logo" />
+          <img src="src/assests/logo.png" alt="Logo" />
         </div>
       </div>
       <div className={styles.right}>

@@ -88,7 +88,7 @@ const DashboardLayout = () => {
   return (
     <div className={styles.container}>
       <aside className={styles.sidebar}>
-        <img src="logo.png" className={styles.logo} alt="Logo" />
+        <img src="src/assests/logo.png" className={styles.logo} alt="Logo" />
 
         <nav className={styles.nav}>
           {navigation.map((item) => {
@@ -112,7 +112,11 @@ const DashboardLayout = () => {
         <header className={styles.header}>
           <div className={styles.header1}>
             <div className={styles.greeting}>
-              <img src="sun.png" className={styles.sun} alt="Sun Icon" />
+              <img
+                src="src/assests/sun.png"
+                className={styles.sun}
+                alt="Sun Icon"
+              />
               <h2>Good morning, {username || "User"}</h2>
             </div>
             <span className={styles.date}>Tue, Jan 25</span>
