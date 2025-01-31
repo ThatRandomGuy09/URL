@@ -20,6 +20,22 @@ const DashboardLayout = () => {
   const [username, setUsername] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const [links, setLinks] = useState([]);
+
+  const fetchLinks = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/api/links`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+      setLinks(response.data);
+    } catch (error) {
+      console.error("Error fetching links:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchLinks();
+  }, []);
 
   const navigation = [
     { name: "Dashboard", path: "/", icon: LayoutDashboard },
@@ -72,13 +88,12 @@ const DashboardLayout = () => {
           : null,
       };
 
-      console.log("Payload sent to backend:", payload);
-
       const response = await axios.post(`${BASE_URL}/api/links`, payload, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
 
-      console.log("Link created successfully:", response.data);
+      setLinks((prevLinks) => [response.data, ...prevLinks]);
+
       setModalOpen(false);
     } catch (error) {
       console.error("Error creating link:", error.message);
