@@ -19,7 +19,7 @@ const DashboardLayout = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  const BASE_URL = "https://url-backend-fczi.onrender.com";
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   const navigation = [
     { name: "Dashboard", path: "/", icon: LayoutDashboard },

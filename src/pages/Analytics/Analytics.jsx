@@ -8,7 +8,7 @@ const Analytics = () => {
   const [sortOrder, setSortOrder] = useState("asc");
   const [toastVisible, setToastVisible] = useState(false);
 
-  const BASE_URL = "https://url-backend-fczi.onrender.com";
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     fetchLinks();

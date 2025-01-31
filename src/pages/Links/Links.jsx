@@ -14,7 +14,7 @@ const Links = () => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [currentLink, setCurrentLink] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc"); // Sorting state
-  const BASE_URL = "https://url-backend-fczi.onrender.com/api/links";
+  const BASE_URL = `${import.meta.env.VITE_BASE_URL}/api/links`;
 
   useEffect(() => {
     fetchLinks();

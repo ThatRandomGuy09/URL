@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [totalClicks, setTotalClicks] = useState(0);
   const [dateWiseClicks, setDateWiseClicks] = useState([]);
   const [deviceData, setDeviceData] = useState([]);
-  const BASE_URL = "https://url-backend-fczi.onrender.com";
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     fetchAnalytics();
