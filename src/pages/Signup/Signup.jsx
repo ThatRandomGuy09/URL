@@ -1,53 +1,57 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Input from '../../components/Input/Input';
-import Button from '../../components/Button/Button';
-import styles from './Signup.module.css';
-import axios from 'axios';
-import React from 'react';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
+import styles from "./Signup.module.css";
+import axios from "axios";
+import React from "react";
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    mobile: '',
-    password: '',
-    confirmPassword: ''
+    name: "",
+    email: "",
+    mobile: "",
+    password: "",
+    confirmPassword: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       return;
     }
 
     try {
       setLoading(true);
-      const response = await axios.post('/api/auth/signup', {
+      const response = await axios.post(`${BASE_URL}/api/auth/signup`, {
         name: formData.name,
         email: formData.email,
         password: formData.password,
-        mobile:formData.mobile
+        mobile: formData.mobile,
       });
       setLoading(false);
-      alert('Registration successful. Please log in.');
-      navigate('/login');
+      alert("Registration successful. Please log in.");
+      navigate("/login");
     } catch (err) {
       setLoading(false);
-      setError(err.response?.data?.message || 'Registration failed. Please try again.');
+      setError(
+        err.response?.data?.message || "Registration failed. Please try again."
+      );
     }
   };
 
@@ -90,7 +94,7 @@ const Signup = () => {
           onChange={handleChange}
         />
         <Button type="submit" fullWidth disabled={loading}>
-          {loading ? 'Signuping...' : 'Signup'}
+          {loading ? "Signuping..." : "Signup"}
         </Button>
       </form>
       <p className={styles.login}>
