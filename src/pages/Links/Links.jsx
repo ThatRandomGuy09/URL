@@ -1,32 +1,45 @@
-import React, { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Pencil, Trash2, Clipboard } from "lucide-react";
 import Toast from "../../components/Toast/Toast";
 import styles from "./Links.module.css";
 import LinkModal from "../../components/LinkModal/LinkModal";
-import Modal from "../../components/Modal/Modal";
 
 const Links = () => {
-  const { links, setLinks } = useOutletContext(); // Get latest links from context
+  const [linksData, setLinksData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
   const [toastVisible, setToastVisible] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [currentLink, setCurrentLink] = useState(null);
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOrder, setSortOrder] = useState("asc"); // Sorting state
   const BASE_URL = `${import.meta.env.VITE_BASE_URL}/api/links`;
+
+  useEffect(() => {
+    fetchLinks();
+  }, []);
+
+  const fetchLinks = async () => {
+    try {
+      const response = await axios.get(BASE_URL, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+      setLinksData(response.data);
+    } catch (error) {
+      console.error("Error fetching links data:", error.message);
+    }
+  };
 
   // Handle date sorting
   const handleSort = () => {
-    const sortedData = [...links].sort((a, b) => {
-      const dateA = new Date(a.expirationDate || "").getTime() || 0;
-      const dateB = new Date(b.expirationDate || "").getTime() || 0;
+    const sortedData = [...linksData].sort((a, b) => {
+      const dateA = new Date(a.expirationDate).getTime();
+      const dateB = new Date(b.expirationDate).getTime();
       return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
     });
-    setLinks(sortedData);
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    setLinksData(sortedData);
   };
 
   const handleCopy = (shortUrl) => {
@@ -50,20 +63,11 @@ const Links = () => {
           : null,
       };
 
-      const response = await axios.put(
-        `${BASE_URL}/short/${currentLink.shortUrl}`,
-        payload,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
+      await axios.put(`${BASE_URL}/short/${currentLink.shortUrl}`, payload, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
 
-      setLinks((prevLinks) =>
-        prevLinks.map((link) =>
-          link.shortUrl === currentLink.shortUrl ? response.data : link
-        )
-      );
-
+      fetchLinks();
       setModalOpen(false);
       setCurrentLink(null);
     } catch (error) {
@@ -81,10 +85,7 @@ const Links = () => {
       await axios.delete(`${BASE_URL}/short/${currentLink.shortUrl}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-
-      setLinks((prevLinks) =>
-        prevLinks.filter((link) => link.shortUrl !== currentLink.shortUrl)
-      );
+      fetchLinks();
       setDeleteModalOpen(false);
       setCurrentLink(null);
     } catch (error) {
@@ -94,9 +95,9 @@ const Links = () => {
 
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
-  const currentData = links.slice(firstIndex, lastIndex);
+  const currentData = linksData.slice(firstIndex, lastIndex);
 
-  const totalPages = Math.ceil(links.length / itemsPerPage);
+  const totalPages = Math.ceil(linksData.length / itemsPerPage);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -123,11 +124,7 @@ const Links = () => {
           <tbody>
             {currentData.map((item) => (
               <tr key={item.shortUrl}>
-                <td>
-                  {item.expirationDate
-                    ? new Date(item.expirationDate).toLocaleString()
-                    : "No Expiry"}
-                </td>
+                <td>{new Date(item.expirationDate).toLocaleString()}</td>
                 <td>
                   <a
                     href={item.originalUrl}
