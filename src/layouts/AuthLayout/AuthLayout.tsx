@@ -7,13 +7,16 @@ const AuthLayout = () => {
     <div className={styles.container}>
       <div className={styles.left}>
         <img
-          src="src/assests/image.png"
+          src="https://res.cloudinary.com/duumc5rqw/image/upload/v1738342069/faqh0dvnpzyfuh9nk57g.png"
           alt="Space background"
           className={styles.backgroundImage}
         />
         <div className={styles.overlay}></div>
         <div className={styles.logo}>
-          <img src="src/assests/logo.png" alt="Logo" />
+          <img
+            src="https://res.cloudinary.com/duumc5rqw/image/upload/v1738342033/dhmm4l95le7inna2pu1g.png"
+            alt="Logo"
+          />
         </div>
       </div>
       <div className={styles.right}>

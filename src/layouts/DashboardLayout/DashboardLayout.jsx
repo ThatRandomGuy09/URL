@@ -88,7 +88,11 @@ const DashboardLayout = () => {
   return (
     <div className={styles.container}>
       <aside className={styles.sidebar}>
-        <img src="src/assests/logo.png" className={styles.logo} alt="Logo" />
+        <img
+          src="https://res.cloudinary.com/duumc5rqw/image/upload/v1738342033/dhmm4l95le7inna2pu1g.png"
+          className={styles.logo}
+          alt="Logo"
+        />
 
         <nav className={styles.nav}>
           {navigation.map((item) => {
@@ -113,7 +117,7 @@ const DashboardLayout = () => {
           <div className={styles.header1}>
             <div className={styles.greeting}>
               <img
-                src="src/assests/sun.png"
+                src="https://res.cloudinary.com/duumc5rqw/image/upload/v1738342051/wnnylvdrme6b8jgdoi4q.png"
                 className={styles.sun}
                 alt="Sun Icon"
               />
